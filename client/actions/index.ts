@@ -8,3 +8,19 @@ export const getHomePageData = async () => {
 
   return acc.data;
 };
+
+export const getServicesList = async () => {
+  const response = await fetch('http://localhost:1337/api/services');
+  const data = await response.json();
+
+  return data.data;
+};
+
+export const getServiceDetails = async (serviceName?: string) => {
+  const response = await fetch(
+    `http://localhost:1337/api/services?filters[documentId][$eq]=${serviceName}&populate[fields][0]=title&populate[fields][1]=description&populate[fields][2]=href&populate[fields][3]=note&populate[heroImage][fields][0]=url&populate[heroImage][fields][1]=alternativeText&populate[details][populate][fields][0]=title&populate[details][populate][fields][1]=description&populate[details][populate][fields][2]=steps&populate[details][populate][fields][3]=subTitle`
+  );
+  const data = await response.json();
+
+  return data.data[0];
+};

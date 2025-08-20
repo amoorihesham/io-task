@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_components_service_details",
+  "info": {
+    "displayName": "service-details",
+    "icon": "command"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "richtext"
+    },
+    "title": {
+      "type": "string"
+    },
+    "steps": {
+      "type": "richtext"
+    },
+    "subTitle": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

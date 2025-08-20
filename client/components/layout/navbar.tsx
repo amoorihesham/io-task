@@ -5,9 +5,8 @@ import Link from 'next/link';
 import { Button } from '../ui/button';
 import { ChevronDown, ChevronUp, Search } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { services } from '@/CONSTANTS';
 
-const Navbar = () => {
+const Navbar = ({ servicesList }: { servicesList: any[] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <nav className='bg-brown-main/40 flex items-center justify-center h-[71px] fixed w-full top-0 z-[1000] backdrop-blur-lg'>
@@ -36,38 +35,38 @@ const Navbar = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className='top-50 z-[1001] bg-brown-main border-gray-800 text-background/80 text-lg font-medium flex items-start justify-between max-w-[1540px] w-[1540px] p-6'>
               <div className='space-y-7'>
-                {services.slice(0, 5).map((service) => (
+                {servicesList.slice(0, 5).map((service) => (
                   <DropdownMenuItem
-                    key={service.text}
+                    key={service.id}
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
-                    <Link href={service.href}>{service.text}</Link>
+                    <Link href={`/services/${service.documentId}`}>{service.title}</Link>
                   </DropdownMenuItem>
                 ))}
               </div>
               <div className='space-y-7'>
-                {services.slice(5, 10).map((service) => (
+                {servicesList.slice(5, 10).map((service) => (
                   <DropdownMenuItem
-                    key={service.text}
+                    key={service.id}
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
-                    <Link href={service.href}>{service.text}</Link>
+                    <Link href={`/services/${service.documentId}`}>{service.title}</Link>
                   </DropdownMenuItem>
                 ))}
               </div>
               <div className='space-y-7'>
-                {services.slice(10, 15).map((service) => (
+                {servicesList.slice(10, 15).map((service) => (
                   <DropdownMenuItem
-                    key={service.text}
+                    key={service.id}
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
-                    <Link href={service.href}>{service.text}</Link>
+                    <Link href={`/services/${service.documentId}`}>{service.title}</Link>
                   </DropdownMenuItem>
                 ))}
               </div>
               <div className='space-y-7'>
-                {services.slice(15).map((service) => (
+                {servicesList.slice(15).map((service) => (
                   <DropdownMenuItem
-                    key={service.text}
+                    key={service.id}
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
-                    <Link href={service.href}>{service.text}</Link>
+                    <Link href={`/services/${service.documentId}`}>{service.title}</Link>
                   </DropdownMenuItem>
                 ))}
               </div>

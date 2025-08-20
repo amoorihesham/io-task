@@ -7,6 +7,7 @@ import { setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/layout/navbar';
 import 'swiper/css';
 import '../globals.css';
+import { getServicesList } from '@/actions';
 
 const dmSans = DM_Sans({
   variable: '--font-sans',
@@ -30,6 +31,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+  const services = await getServicesList();
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -37,9 +39,11 @@ export default async function RootLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang='en'>
+    <html
+      lang={locale}
+      dir={locale === 'en' ? 'ltr' : 'rtl'}>
       <body className={`${dmSans.variable}  antialiased`}>
-        <Navbar />
+        <Navbar servicesList={services} />
         <main className='min-h-[calc(100dvh-71px)]'>{children}</main>
       </body>
     </html>

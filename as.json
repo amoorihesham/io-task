@@ -1,40 +1,9 @@
 {
   "populate": {
-    "heroImage": {
-      "fields": ["url", "alternativeText"]
-    },
-    "slides": {
-      "fields": ["cta", "heading", "description"],
+    "fields": ["title", "description", "href", "note"],
+    "details": {
       "populate": {
-        "person": {
-          "fields": ["url", "alternativeText"]
-        }
-      }
-    },
-    "team": {
-      "fields": ["title", "description"],
-      "populate": {
-        "members": {
-          "fields": ["name", "position", "whatsapp", "phone", "email"],
-          "populate": {
-            "image": {
-              "fields": ["url", "alternativeText"]
-            }
-          }
-        }
-      }
-    },
-    "testimonials": {
-      "fields": ["title", "description"],
-      "populate": {
-        "clients": {
-          "fields": ["name", "position", "description"],
-          "populate": {
-            "image": {
-              "fields": ["url", "alternativeText"]
-            }
-          }
-        }
+        "fields": ["title", "description", "steps"]
       }
     }
   }

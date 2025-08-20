@@ -53,6 +53,20 @@ export interface ComponentsClientCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ComponentsServiceDetails extends Struct.ComponentSchema {
+  collectionName: 'components_components_service_details';
+  info: {
+    displayName: 'service-details';
+    icon: 'command';
+  };
+  attributes: {
+    description: Schema.Attribute.RichText;
+    steps: Schema.Attribute.RichText;
+    subTitle: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
 export interface ComponentsTeamCard extends Struct.ComponentSchema {
   collectionName: 'components_components_team_cards';
   info: {
@@ -75,6 +89,7 @@ declare module '@strapi/strapi' {
       'blocks.our-team': BlocksOurTeam;
       'blocks.testimonials': BlocksTestimonials;
       'components.client-card': ComponentsClientCard;
+      'components.service-details': ComponentsServiceDetails;
       'components.team-card': ComponentsTeamCard;
     }
   }
