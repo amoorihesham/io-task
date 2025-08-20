@@ -5,12 +5,11 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/layout/navbar';
-import 'swiper/css';
-import '../globals.css';
 import { getServicesList } from '@/actions';
 import Footer from '@/components/layout/footer';
 import { Toaster } from 'sonner';
 import ReduxProvider from '@/components/providers/Redux';
+import '../globals.css';
 
 const dmSans = DM_Sans({
   variable: '--font-sans',

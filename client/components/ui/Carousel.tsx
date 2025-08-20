@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -28,7 +28,7 @@ type CarouselContextProps = {
   canScrollNext: boolean;
 } & CarouselProps;
 
-const CarouselContext = React.createContext<CarouselContextProps | null>(null);
+export const CarouselContext = React.createContext<CarouselContextProps | null>(null);
 
 function useCarousel() {
   const context = React.useContext(CarouselContext);
@@ -165,15 +165,11 @@ function CarouselPrevious({ className, variant = 'outline', size = 'icon', ...pr
       data-slot='carousel-previous'
       variant={variant}
       size={size}
-      className={cn(
-        'absolute size-14 rounded-full border-0 cursor-pointer',
-        orientation === 'horizontal' ? 'top-1/2 -left-20 -translate-y-1/2' : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
-        className
-      )}
+      className={cn('absolute size-10 lg:size-14 rounded-full border-0 cursor-pointer', orientation, className)}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}>
-      <ChevronLeft className='size-10 text-foreground' />
+      <ChevronLeft className='size-8 lg:size-10' />
       <span className='sr-only'>Previous slide</span>
     </Button>
   );
@@ -187,15 +183,11 @@ function CarouselNext({ className, variant = 'outline', size = 'icon', ...props 
       data-slot='carousel-next'
       variant={variant}
       size={size}
-      className={cn(
-        'absolute size-14 rounded-full cursor-pointer border-0',
-        orientation === 'horizontal' ? 'top-1/2 -right-20 -translate-y-1/2' : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
-        className
-      )}
+      className={cn('absolute size-10 lg:size-14 rounded-full cursor-pointer border-0', orientation, className)}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}>
-      <ChevronRight className='size-10 text-foreground' />
+      <ChevronRight className='size-8 lg:size-10 ' />
       <span className='sr-only'>Next slide</span>
     </Button>
   );

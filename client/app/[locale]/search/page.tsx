@@ -1,7 +1,7 @@
 import { getSearchResults } from '@/actions';
 import MaxContentWrapper from '@/components/layout/max-content-wrapper';
 import { cn } from '@/lib/utils';
-import { ChevronLeft, Square } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';

@@ -17,7 +17,7 @@ const subscribeSchema = z.object({
 
 const Footer = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, success, error } = useAppSelector((state) => state.subscribe);
+  const { isLoading, success } = useAppSelector((state) => state.subscribe);
   const t = useTranslations('footer');
   const locale = useLocale();
   const { setSubmitting, errors, isSubmitting, handleBlur, handleChange, handleSubmit, values, resetForm } = useFormik({

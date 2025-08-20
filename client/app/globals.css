@@ -133,28 +133,5 @@
   }
 }
 
-.swiper-slide{
-  width: 100% !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
-.swiper-pagination-bullet {
-  background: gray;
-  opacity: 0.6;
-}
-
-.swiper-pagination-bullet-active {
-  background: black;
-  opacity: 1;
-}
-
-@media(max-width:768px){
-  .swiper-slide{
-    gap:16px;
-    justify-content: center;
-    
-  }
-}
 

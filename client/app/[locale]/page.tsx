@@ -1,11 +1,15 @@
 import { getHomePageData } from '@/actions';
 import MaxContentWrapper from '@/components/layout/max-content-wrapper';
-import Carousel from '@/components/Carousel';
 import { Carousel as ShadCarousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Image from 'next/image';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import { getLocale } from 'next-intl/server';
+import { Button } from '@/components/ui/button';
+import CarouselBullets from '@/components/ui/carousel-bullets';
 
 export default async function Home() {
+  const locale = await getLocale();
   const data = await getHomePageData();
 
   return (
@@ -13,8 +17,40 @@ export default async function Home() {
       <header
         style={{ backgroundImage: `url(http://localhost:1337${data.heroImage.url})` }}
         className='h-dvh bg-cover bg-no-repeat bg-center flex items-center justify-center'>
-        <MaxContentWrapper className='h-[700px] flex justify-center'>
-          <Carousel slides={data.slides} />
+        <MaxContentWrapper className=' h-full flex justify-center items-center'>
+          <ShadCarousel className='w-full flex items-center'>
+            <CarouselContent className='w-full'>
+              {data.slides.map((slide) => (
+                <CarouselItem
+                  className='flex flex-col-reverse lg:flex-row items-center gap-y-6 lg:justify-between w-full'
+                  key={slide.id}>
+                  <div className='space-y-4 lg:space-y-6'>
+                    <h1 className='text-3xl lg:text-[40px] text-background font-bold font-sans leading-[28px]'>{slide.heading}</h1>
+                    <p className='max-w-[700px] font-medium lg:text-lg font-sans leading-[28px] text-background mb-5 lg:mb-16'>
+                      {slide.description}
+                    </p>
+                    <Button
+                      variant={'secondary'}
+                      className='text-lg font-medium font-sans text-brown-main hover:bg-background/80 leading-[28px] py-5 px-6 lg:py-7 lg:px-8 cursor-pointer transition-colors duration-300'>
+                      {slide.cta}
+                    </Button>
+                  </div>
+                  <div>
+                    <Image
+                      src={`http://localhost:1337${slide.person.url}`}
+                      alt={slide.person.alternativeText}
+                      width={374}
+                      height={374}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className='absolute w-full h-[50px] left-0 -top-15 lg:-left-40 lg:w-[100px] lg:h-[250px] lg:top-1/2 lg:-translate-y-1/2'>
+              <CarouselPrevious className='left-1/2 -translate-x-1/2 hidden lg:flex bg-transparent disabled:text-background/90 text-background hover:bg-transparent hover:text-background' />
+              <CarouselBullets amount={data.slides.length} />
+            </div>
+          </ShadCarousel>
         </MaxContentWrapper>
       </header>
 
@@ -25,11 +61,11 @@ export default async function Home() {
           {data.team.description}
         </p>
         <ShadCarousel className='max-w-4xl mx-auto mt-10'>
-          <CarouselContent className='flex items-center justify-between '>
+          <CarouselContent className='flex items-center justify-between mb-6 lg:mb-0'>
             {data.team.members.map((member) => (
               <CarouselItem
                 key={member.id}
-                className='max-w-[300px]'>
+                className='w-full lg:max-w-[300px] flex flex-col items-center lg:block'>
                 <Image
                   src={`http://localhost:1337${member.image.url}`}
                   alt='member image'
@@ -68,8 +104,8 @@ export default async function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className='hidden lg:flex' />
-          <CarouselNext className='hidden lg:flex' />
+          <CarouselPrevious className={cn('top-full lg:top-1/2 lg:-translate-y-1/2 lg:-left-20 left-0 ')} />
+          <CarouselNext className={cn('top-full lg:top-1/2 left-10 lg:-translate-y-1/2 lg:left-[100%] ')} />
         </ShadCarousel>
       </MaxContentWrapper>
 
@@ -81,7 +117,7 @@ export default async function Home() {
             {data.testimonials.description}
           </p>
           <ShadCarousel className='mt-10'>
-            <CarouselContent>
+            <CarouselContent className='mb-6'>
               {data.testimonials.clients.map((client) => (
                 <CarouselItem
                   key={client.id}
@@ -104,8 +140,18 @@ export default async function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className='hidden lg:flex' />
-            <CarouselNext className='hidden lg:flex' />
+            <CarouselPrevious
+              className={cn(
+                'top-full disabled:bg-background/20 disabled:text-background bg-background text-foreground',
+                locale === 'en' ? 'right-15 lg:right-20' : 'left-2 '
+              )}
+            />
+            <CarouselNext
+              className={cn(
+                'top-full disabled:bg-background/20 disabled:text-background bg-background text-foreground',
+                locale === 'en' ? 'right-2' : 'left-15 lg:left-20'
+              )}
+            />
           </ShadCarousel>
         </MaxContentWrapper>
       </div>
