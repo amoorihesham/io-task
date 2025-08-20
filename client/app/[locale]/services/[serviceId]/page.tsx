@@ -47,7 +47,13 @@ const ServiceDetails = async ({ params }: { params: Promise<{ serviceId: string 
                           .split('-')
                           .map((item) => item.trim())
                           .filter((item) => item.length > 0)
-                          .map((item) => <p className='font-normal font-sans text-[#1e1e1e] my-1'>- {item}</p>)}
+                          .map((item, idx) => (
+                            <p
+                              key={idx}
+                              className='font-normal font-sans text-[#1e1e1e] my-1'>
+                              - {item}
+                            </p>
+                          ))}
                     </div>
                   </div>
                 </div>
