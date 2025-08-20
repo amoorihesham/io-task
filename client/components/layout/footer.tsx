@@ -46,10 +46,10 @@ const Footer = () => {
   });
 
   return (
-    <footer className='bg-brown-main mt-6 py-10'>
+    <footer className='bg-brown-main mt-6 py-6 lg:py-10'>
       <MaxContentWrapper>
-        <div className='w-full flex justify-end items-end gap-x-10'>
-          <div className='w-1/4'>
+        <div className='w-full flex justify-end items-end gap-x-6 lg:gap-x-10'>
+          <div className='w-full lg:w-1/4'>
             <form
               className=''
               onSubmit={handleSubmit}>
@@ -75,7 +75,7 @@ const Footer = () => {
               </div>
             </form>
           </div>
-          <div className='flex items-center gap-x-6'>
+          <div className='flex flex-col lg:flex-row gap-y-3 items-center gap-x-6'>
             <span className='font-normal font-sans text-background capitalize'>{t('contacts')}</span>
             <div className='flex items-center gap-x-4'>
               <Link href={'#'}>
@@ -105,9 +105,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <hr className='my-8 border-gray-400' />
-        <div className='flex items-center justify-between'>
-          <div className='flex items-center gap-x-6'>
+        <hr className=' my-6 lg:my-8 border-gray-400' />
+        <div className='flex flex-col lg:flex-row items-center justify-between gap-y-10 lg:gap-y-0'>
+          <div className='flex flex-col lg:flex-row items-center gap-y-4 lg:gap-x-6'>
             <Link
               href={'#'}
               className='text-background font-normal font-sans capitalize'>
@@ -134,6 +134,7 @@ const Footer = () => {
               {t('our-services')}
             </Link>
           </div>
+
           <div>
             <p className='font-sans font-normal text-background'>{t('copyright')}</p>
           </div>

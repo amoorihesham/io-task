@@ -68,8 +68,8 @@ export default async function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className='hidden lg:flex' />
+          <CarouselNext className='hidden lg:flex' />
         </ShadCarousel>
       </MaxContentWrapper>
 
@@ -85,18 +85,18 @@ export default async function Home() {
               {data.testimonials.clients.map((client) => (
                 <CarouselItem
                   key={client.id}
-                  className='flex items-start gap-x-10'>
+                  className='flex flex-col lg:flex-row items-center lg:items-start gap-y-6 lg:gap-x-10'>
                   <Image
                     src={`http://localhost:1337${client.image.url}`}
                     alt='client image'
                     width={374}
                     height={374}
                   />
-                  <div className='h-full flex flex-col justify-between'>
-                    <h3 className='text-[24px] font-normal text-background/60 font-sans leading-[32px] max-w-[728px] '>
+                  <div className='h-full flex flex-col gap-y-4 lg:justify-between'>
+                    <h3 className='text-lg text-center lg:text-left lg:text-[24px] font-normal text-background/60 font-sans leading-[32px] max-w-[728px] '>
                       {client.description}
                     </h3>
-                    <div className='space-y-4'>
+                    <div className='space-y-2 lg:space-y-4 text-center lg:text-left'>
                       <p className='text-2xl font-semibold font-sans text-background leading-[26px]'>{client.name}</p>
                       <p className=' font-normal font-sans text-background leading-[26px]'>{client.position}</p>
                     </div>
@@ -104,8 +104,8 @@ export default async function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className='hidden lg:flex' />
+            <CarouselNext className='hidden lg:flex' />
           </ShadCarousel>
         </MaxContentWrapper>
       </div>

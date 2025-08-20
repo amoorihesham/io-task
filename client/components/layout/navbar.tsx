@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import z from 'zod';
 import { useLocale, useTranslations } from 'next-intl';
 import { useChangeLanguage } from '@/hooks/useChangeLanguage';
+import AppSheet from './app-sheet';
 
 const schema = z.object({
   query: z.string().min(1, 'Provide a query'),
@@ -42,8 +43,8 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
 
   return (
     <nav className='bg-brown-main/40 flex items-center justify-center h-[71px] fixed w-full top-0 z-[1000] backdrop-blur-lg'>
-      <MaxContentWrapper className='w-full h-full flex items-center justify-center gap-x-14'>
-        <div className='flex items-center gap-x-6'>
+      <MaxContentWrapper className='w-full h-full flex items-center justify-end lg:justify-center gap-x-14'>
+        <div className='items-center gap-x-6 hidden lg:flex'>
           <Link
             href={'/'}
             className='capitalize font-sans text-background text-lg px-4 py-2'>
@@ -120,7 +121,7 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
             {t('contact-us')}
           </Link>
         </div>
-        <div className='flex items-center gap-x-6'>
+        <div className='items-center gap-x-6 hidden lg:flex'>
           <Button
             onClick={() => cl(locale === 'en' ? 'ar' : 'en')}
             variant={'ghost'}
@@ -167,10 +168,11 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
           <Button
             variant={'outline'}
             size={'lg'}
-            className='cursor-pointer transition-colors duration-300 bg-transparent text-background hover:bg-brown-main/80 hover:text-background hover:border-brown-main/80'>
+            className='cursor-pointer transition-colors duration-300 bg-transparent text-background hover:bg-brown-main/80 hover:text-background hover:border-brown-main/80 hidden lg:flex'>
             {t('book-appointment')}
           </Button>
         </div>
+        <AppSheet servicesList={servicesList} />
       </MaxContentWrapper>
     </nav>
   );

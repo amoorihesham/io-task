@@ -150,3 +150,11 @@
   opacity: 1;
 }
 
+@media(max-width:768px){
+  .swiper-slide{
+    gap:16px;
+    justify-content: center;
+    
+  }
+}
+
