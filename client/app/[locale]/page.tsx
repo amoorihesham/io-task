@@ -3,11 +3,11 @@ import MaxContentWrapper from '@/components/layout/max-content-wrapper';
 import Carousel from '@/components/Carousel';
 import { Carousel as ShadCarousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Image from 'next/image';
-import { Mail, Phone } from 'lucide-react';
+import Link from 'next/link';
 
 export default async function Home() {
   const data = await getHomePageData();
-  console.log(data);
+
   return (
     <>
       <header
@@ -40,8 +40,30 @@ export default async function Home() {
                 <h3 className='text-[22px] font-medium text-brown-main font-sans leading-[32px] text-center'>{member.name}</h3>
                 <p className='text-sm font-bold font-sans text-[#15143966] leading-[26px] text-center'>{member.position}</p>
                 <div className='flex items-center justify-center mt-4 gap-x-3'>
-                  <Phone className='size-[18px]' />
-                  <Mail />
+                  <Link href={'#'}>
+                    <Image
+                      src={'/assets/icons/whatsapp.svg'}
+                      alt='whatsapp icon'
+                      width={20}
+                      height={15}
+                    />
+                  </Link>
+                  <Link href={'#'}>
+                    <Image
+                      src={'/assets/icons/phone.svg'}
+                      alt='phone icon'
+                      width={20}
+                      height={15}
+                    />
+                  </Link>
+                  <Link href={'#'}>
+                    <Image
+                      src={'/assets/icons/email.svg'}
+                      alt='email icon'
+                      width={20}
+                      height={15}
+                    />
+                  </Link>
                 </div>
               </CarouselItem>
             ))}

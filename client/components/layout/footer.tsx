@@ -5,15 +5,22 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import z from 'zod';
-import { fakePromise } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import { useLocale, useTranslations } from 'next-intl';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { subscribe } from '@/redux/thunks/subscribe';
 
 const subscribeSchema = z.object({
   email: z.email(),
 });
 
 const Footer = () => {
-  const { setSubmitting, errors, isSubmitting, handleBlur, handleChange, handleSubmit, values } = useFormik({
+  const dispatch = useAppDispatch();
+  const { isLoading, success, error } = useAppSelector((state) => state.subscribe);
+  const t = useTranslations('footer');
+  const locale = useLocale();
+  const { setSubmitting, errors, isSubmitting, handleBlur, handleChange, handleSubmit, values, resetForm } = useFormik({
     initialValues: {
       email: '',
     },
@@ -26,14 +33,15 @@ const Footer = () => {
       return errors;
     },
     onSubmit: async (values) => {
-      const result = await fakePromise({ success: true }, 2000);
-      if (!result.success) {
-        toast.error(errors.email || 'Subscription Failed.');
+      const result = await dispatch(subscribe(JSON.stringify(values.email)));
+      if (!success) {
+        toast.error(t('subscribe-error'));
         setSubmitting(false);
         return;
       }
-      toast.success('Subscribed Successfully.');
+      toast.success(`${result.meta.arg} ${t('subscribe-success')}`);
       setSubmitting(false);
+      resetForm();
     },
   });
 
@@ -54,18 +62,21 @@ const Footer = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className='bg-background py-3 px-3 rounded-sm w-full'
-                  placeholder='ex@gmail.com'
+                  placeholder={t('email')}
                 />
                 <Button
-                  className='absolute right-2 top-1/2 -translate-y-1/2 text-xs font-medium font-sans text-background bg-brown-main hover:bg-brown-main/80 transition-colors duration-300 cursor-pointer'
-                  disabled={isSubmitting}>
-                  {isSubmitting ? 'subscribing...' : 'subscribe'}
+                  className={cn(
+                    'absolute top-1/2 -translate-y-1/2 text-xs font-medium font-sans text-background bg-brown-main hover:bg-brown-main/80 transition-colors duration-300 cursor-pointer',
+                    locale === 'ar' ? 'left-2' : 'right-2'
+                  )}
+                  disabled={isSubmitting || isLoading}>
+                  {isSubmitting ? `${t('subscribe')}...` : t('subscribe')}
                 </Button>
               </div>
             </form>
           </div>
           <div className='flex items-center gap-x-6'>
-            <span className='font-normal font-sans text-background capitalize'>contacts</span>
+            <span className='font-normal font-sans text-background capitalize'>{t('contacts')}</span>
             <div className='flex items-center gap-x-4'>
               <Link href={'#'}>
                 <Image
@@ -100,31 +111,31 @@ const Footer = () => {
             <Link
               href={'#'}
               className='text-background font-normal font-sans capitalize'>
-              About
+              {t('about')}
             </Link>
             <Link
               href={'#'}
               className='text-background font-normal font-sans capitalize'>
-              Our Strategy
+              {t('our-strategy')}
             </Link>
             <Link
               href={'#'}
               className='text-background font-normal font-sans capitalize'>
-              Our Advantages
+              {t('our-advantages')}
             </Link>
             <Link
               href={'#'}
               className='text-background font-normal font-sans capitalize'>
-              Social Responsibility
+              {t('social-responsibility')}
             </Link>
             <Link
               href={'#'}
               className='text-background font-normal font-sans capitalize'>
-              Our Services
+              {t('our-services')}
             </Link>
           </div>
           <div>
-            <p className='font-sans font-normal text-background'>© 2024 . All rights reserved.</p>
+            <p className='font-sans font-normal text-background'>{t('copyright')}</p>
           </div>
         </div>
       </MaxContentWrapper>

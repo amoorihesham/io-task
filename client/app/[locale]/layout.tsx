@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { DM_Sans } from 'next/font/google';
 import { routing } from '@/lib/i18n/routing';
-import { hasLocale } from 'next-intl';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/layout/navbar';
@@ -10,6 +10,7 @@ import '../globals.css';
 import { getServicesList } from '@/actions';
 import Footer from '@/components/layout/footer';
 import { Toaster } from 'sonner';
+import ReduxProvider from '@/components/providers/Redux';
 
 const dmSans = DM_Sans({
   variable: '--font-sans',
@@ -33,7 +34,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  const services = await getServicesList();
+  const services = await getServicesList(locale);
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -45,10 +46,14 @@ export default async function RootLayout({
       lang={locale}
       dir={locale === 'en' ? 'ltr' : 'rtl'}>
       <body className={`${dmSans.variable}  antialiased`}>
-        <Navbar servicesList={services} />
-        <main className='min-h-[calc(100dvh-71px)]'>{children}</main>
-        <Footer />
-        <Toaster />
+        <NextIntlClientProvider>
+          <ReduxProvider>
+            <Navbar servicesList={services} />
+            <main className='min-h-[calc(100dvh-71px)]'>{children}</main>
+            <Footer />
+            <Toaster />
+          </ReduxProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

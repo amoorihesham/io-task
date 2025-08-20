@@ -8,7 +8,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 export default function Carousel({ slides }: { slides: any[] }) {
-  console.log(slides);
   return (
     <>
       <Swiper

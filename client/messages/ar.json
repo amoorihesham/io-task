@@ -1,0 +1,26 @@
+{
+  "navigation": {
+    "home": "الرئيسية",
+    "about-us": "معلومات عنا",
+    "services": "خدماتنا",
+    "our-team": "فريقنا",
+    "blogs": "المدونة",
+    "contact-us": "تواصل معنا",
+    "book-appointment": "احجز موعد",
+    "search": "ابدأ البحث",
+    "search-query": "ادخل عنوان البحث"
+  },
+  "footer": {
+    "contacts": "تواصل معنا عبر",
+    "copyright": "© 2024 . حميع الحقوق محفوظة.",
+    "our-services": "خدماتنا",
+    "social-responsibility": "المسؤلية الاجتماعية",
+    "our-advantages": "مميزاتنا",
+    "our-strategy": "خطتنا",
+    "about": "معلومات عنا",
+    "email": "ex@gmail.com",
+    "subscribe": "اشترك",
+    "subscribe-success": "تم الاشتراك بنجاح",
+    "subscribe-error": "حدث خطأ اثناء عملية الاشتراك"
+  }
+}

@@ -1,1 +1,26 @@
-{}
+{
+  "navigation": {
+    "home": "Home",
+    "about-us": "About Us",
+    "services": "Services",
+    "our-team": "Our Team",
+    "blogs": "Blogs",
+    "contact-us": "Contact Us",
+    "book-appointment": "Book Appointment",
+    "search": "search",
+    "search-query": "Search query"
+  },
+  "footer": {
+    "contacts": "Contacts",
+    "copyright": "© 2024 . All rights reserved.",
+    "our-services": "Our Services",
+    "social-responsibility": "Social Responsibility",
+    "our-advantages": "Our Advantages",
+    "our-strategy": "Our Strategy",
+    "about": "About",
+    "email": "ex@gmail.com",
+    "subscribe": "Subscribe",
+    "subscribe-success": "subscribed successfully",
+    "subscribe-error": "something went wrong while subscribing."
+  }
+}
