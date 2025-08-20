@@ -8,6 +8,7 @@ import Navbar from '@/components/layout/navbar';
 import 'swiper/css';
 import '../globals.css';
 import { getServicesList } from '@/actions';
+import Footer from '@/components/layout/footer';
 
 const dmSans = DM_Sans({
   variable: '--font-sans',
@@ -45,6 +46,7 @@ export default async function RootLayout({
       <body className={`${dmSans.variable}  antialiased`}>
         <Navbar servicesList={services} />
         <main className='min-h-[calc(100dvh-71px)]'>{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -124,6 +124,14 @@
   }
 }
 
+@layer utilities{
+  .width-transition{
+    transition: width .5s ease-in-out;
+  }
+  .left-transition{
+    transition: left .5s ease-in-out;
+  }
+}
 
 .swiper-slide{
   width: 100% !important;
