@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_our_teams",
+  "info": {
+    "displayName": "our-team",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "members": {
+      "type": "component",
+      "component": "components.team-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
