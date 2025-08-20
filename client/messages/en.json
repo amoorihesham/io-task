@@ -22,5 +22,14 @@
     "subscribe": "Subscribe",
     "subscribe-success": "subscribed successfully",
     "subscribe-error": "something went wrong while subscribing."
+  },
+  "service-page": {
+    "back": "Back"
+  },
+  "search-page": {
+    "back": "Back",
+    "read-more": "Read More",
+    "team": "Team",
+    "service": "service"
   }
 }

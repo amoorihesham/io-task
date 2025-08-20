@@ -43,7 +43,7 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
 
   return (
     <nav className='bg-brown-main/40 flex items-center justify-center h-[71px] fixed w-full top-0 z-[1000] backdrop-blur-lg'>
-      <MaxContentWrapper className='w-full h-full flex items-center justify-end lg:justify-center gap-x-14'>
+      <MaxContentWrapper className='w-full h-full flex items-center justify-center lg:justify-center gap-x-14'>
         <div className='items-center gap-x-6 hidden lg:flex'>
           <Link
             href={'/'}

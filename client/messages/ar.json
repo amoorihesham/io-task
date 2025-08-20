@@ -22,5 +22,14 @@
     "subscribe": "اشترك",
     "subscribe-success": "تم الاشتراك بنجاح",
     "subscribe-error": "حدث خطأ اثناء عملية الاشتراك"
+  },
+  "service-page": {
+    "back": "رجوع"
+  },
+  "search-page": {
+    "back": "رجوع",
+    "read-more": "اقرأ المزيد",
+    "team": "الفريق",
+    "service": "الخدمات"
   }
 }

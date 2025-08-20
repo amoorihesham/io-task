@@ -1,6 +1,8 @@
 import { getServiceDetails, getServicesList } from '@/actions';
 import MaxContentWrapper from '@/components/layout/max-content-wrapper';
+import { cn } from '@/lib/utils';
 import { ChevronLeft, Square } from 'lucide-react';
+import { getLocale, getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';
@@ -12,6 +14,8 @@ export const generateStaticParams = async () => {
 };
 
 const ServiceDetails = async ({ params }: { params: Promise<{ serviceId: string }> }) => {
+  const t = await getTranslations('service-page');
+  const local = await getLocale();
   const serviceId = (await params).serviceId;
   const service = await getServiceDetails(serviceId);
 
@@ -27,9 +31,13 @@ const ServiceDetails = async ({ params }: { params: Promise<{ serviceId: string 
         <MaxContentWrapper className='py-10 lg:py-20'>
           <Link
             href={'/services'}
-            className='text-brown-main/80 hover:text-brown-main font-sans font-bold flex items-center gap-x-1  justify-center transition-colors duration-300 w-fit'>
-            <ChevronLeft /> Back
+            className={cn(
+              'text-brown-main/80 hover:text-brown-main font-sans font-bold flex items-center gap-x-1  justify-center transition-colors duration-300 w-fit',
+              local === 'en' ? 'flex-row' : 'flex-row-reverse'
+            )}>
+            <ChevronLeft /> {t('back')}
           </Link>
+
           <div className='mt-8 lg:mt-14'>
             <h1 className='font-medium font-sans text-3xl lg:text-[42px] leading-[32px] text-brown-main'>{service.title}</h1>
             <p className='mt-8 lg:mt-14 text-[#1e1e1e] font-normal font-sans leading-[26px] max-w-[1142px]'>{service.description}</p>
