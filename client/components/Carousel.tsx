@@ -20,7 +20,9 @@ export default function Carousel({ slides }: { slides: any[] }) {
         }}
         className='w-full'>
         {slides.map((slide) => (
-          <SwiperSlide className='flex items-center justify-between '>
+          <SwiperSlide
+            className='flex items-center justify-between '
+            key={slide.id}>
             <div className='space-y-6'>
               <h1 className='text-[40px] text-background font-bold font-sans leading-[28px]'>{slide.heading}</h1>
               <p className='max-w-[700px] font-medium text-lg font-sans leading-[28px] text-background mb-16'>{slide.description}</p>
