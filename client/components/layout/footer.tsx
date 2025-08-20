@@ -1,23 +1,65 @@
+'use client';
 import Image from 'next/image';
 import MaxContentWrapper from './max-content-wrapper';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import { useFormik } from 'formik';
+import z from 'zod';
+import { fakePromise } from '@/lib/utils';
+import { toast } from 'sonner';
+
+const subscribeSchema = z.object({
+  email: z.email(),
+});
 
 const Footer = () => {
+  const { setSubmitting, errors, isSubmitting, handleBlur, handleChange, handleSubmit, values } = useFormik({
+    initialValues: {
+      email: '',
+    },
+    validate: (values) => {
+      const errors: Partial<{ email: string }> = {};
+      const { success, error } = subscribeSchema.safeParse(values);
+
+      if (!success) errors.email = error.issues[0].message;
+
+      return errors;
+    },
+    onSubmit: async (values) => {
+      const result = await fakePromise({ success: true }, 2000);
+      if (!result.success) {
+        toast.error(errors.email || 'Subscription Failed.');
+        setSubmitting(false);
+        return;
+      }
+      toast.success('Subscribed Successfully.');
+      setSubmitting(false);
+    },
+  });
+
   return (
     <footer className='bg-brown-main mt-6 py-10'>
       <MaxContentWrapper>
         <div className='w-full flex justify-end items-end gap-x-10'>
           <div className='w-1/4'>
-            <form className=''>
+            <form
+              className=''
+              onSubmit={handleSubmit}>
+              {errors.email && <p className='my-2 text-red-500 font-medium capitalize'>{errors.email}</p>}
               <div className='relative w-full'>
                 <input
                   type='text'
+                  name='email'
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className='bg-background py-3 px-3 rounded-sm w-full'
                   placeholder='ex@gmail.com'
                 />
-                <Button className='absolute right-2 top-1/2 -translate-y-1/2 text-xs font-medium font-sans text-background bg-brown-main hover:bg-brown-main/80 transition-colors duration-300 cursor-pointer'>
-                  subscribe
+                <Button
+                  className='absolute right-2 top-1/2 -translate-y-1/2 text-xs font-medium font-sans text-background bg-brown-main hover:bg-brown-main/80 transition-colors duration-300 cursor-pointer'
+                  disabled={isSubmitting}>
+                  {isSubmitting ? 'subscribing...' : 'subscribe'}
                 </Button>
               </div>
             </form>

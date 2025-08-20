@@ -9,6 +9,7 @@ import 'swiper/css';
 import '../globals.css';
 import { getServicesList } from '@/actions';
 import Footer from '@/components/layout/footer';
+import { Toaster } from 'sonner';
 
 const dmSans = DM_Sans({
   variable: '--font-sans',
@@ -47,6 +48,7 @@ export default async function RootLayout({
         <Navbar servicesList={services} />
         <main className='min-h-[calc(100dvh-71px)]'>{children}</main>
         <Footer />
+        <Toaster />
       </body>
     </html>
   );
