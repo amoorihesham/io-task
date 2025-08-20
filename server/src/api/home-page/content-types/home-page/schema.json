@@ -36,6 +36,26 @@
       },
       "component": "blocks.home-page",
       "repeatable": true
+    },
+    "team": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.our-team",
+      "repeatable": false
+    },
+    "testimonials": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "blocks.testimonials",
+      "repeatable": false
     }
   }
 }

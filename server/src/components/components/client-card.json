@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_components_client_cards",
+  "info": {
+    "displayName": "client-card",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "name": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -33,7 +33,7 @@ const links = [
 
 const Navbar = () => {
   return (
-    <nav className='bg-transparent flex items-center justify-center h-[71px] fixed w-full top-0 z-[1000]'>
+    <nav className='bg-brown-main/40 flex items-center justify-center h-[71px] fixed w-full top-0 z-[1000] backdrop-blur-lg'>
       <MaxContentWrapper className='w-full h-full flex items-center justify-center gap-x-14'>
         <div>
           {links.map((link) => (

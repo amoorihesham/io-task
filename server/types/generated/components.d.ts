@@ -27,6 +27,32 @@ export interface BlocksOurTeam extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksTestimonials extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_testimonials';
+  info: {
+    displayName: 'testimonials';
+  };
+  attributes: {
+    clients: Schema.Attribute.Component<'components.client-card', true>;
+    description: Schema.Attribute.RichText;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface ComponentsClientCard extends Struct.ComponentSchema {
+  collectionName: 'components_components_client_cards';
+  info: {
+    displayName: 'client-card';
+    icon: 'book';
+  };
+  attributes: {
+    description: Schema.Attribute.RichText;
+    image: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String;
+    position: Schema.Attribute.String;
+  };
+}
+
 export interface ComponentsTeamCard extends Struct.ComponentSchema {
   collectionName: 'components_components_team_cards';
   info: {
@@ -47,6 +73,8 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'blocks.home-page': BlocksHomePage;
       'blocks.our-team': BlocksOurTeam;
+      'blocks.testimonials': BlocksTestimonials;
+      'components.client-card': ComponentsClientCard;
       'components.team-card': ComponentsTeamCard;
     }
   }

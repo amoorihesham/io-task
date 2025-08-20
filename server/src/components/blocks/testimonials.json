@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_testimonials",
+  "info": {
+    "displayName": "testimonials"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "clients": {
+      "type": "component",
+      "component": "components.client-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
