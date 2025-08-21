@@ -45,7 +45,11 @@ const ServiceDetails = async ({ params }: { params: Promise<{ serviceId: string 
               {service.details.map((detail) => (
                 <div key={detail.id}>
                   <h5 className='font-bold font-sans text-brown-main leading-[26px] mb-2 lg:mb-4'>{detail.title}</h5>
-                  <div className='border-l-2 lg:border-l-4 border-l-gray-300 ps-4 lg:ps-6 flex items-start gap-x-2 text-[#1e1e1e] font-bold font-sans max-w-[908px] leading-[26px]'>
+                  <div
+                    className={cn(
+                      'ps-4 lg:ps-6 flex items-start gap-x-2 text-[#1e1e1e] font-bold font-sans max-w-[908px] leading-[26px]',
+                      local === 'en' ? 'border-l-2 lg:border-l-4 border-l-gray-300' : 'border-r-2 lg:border-r-4 border-r-gray-300'
+                    )}>
                     <Square className='size-6 text-brown-main fill-brown-main' />
                     <div className=''>
                       <p className='mb-2'>{detail.description}</p>
