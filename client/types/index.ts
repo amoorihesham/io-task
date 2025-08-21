@@ -20,4 +20,5 @@ export type UseI18nReturn = ReturnType<typeof useI18n>;
 export type InjectedProps = {
   t: UseI18nReturn['t'];
   locale: UseI18nReturn['locale'];
+  changeLanguage: UseI18nReturn['changeLanguage'];
 };

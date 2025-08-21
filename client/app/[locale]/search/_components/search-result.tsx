@@ -1,12 +1,12 @@
-'use client';
-import { use } from 'react';
 import { notFound } from 'next/navigation';
-import ReadMoreButton from './read-more';
+import { getSearchResults } from '@/actions';
 import { ServiceType } from '@/types';
+import ReadMoreButton from './read-more';
 
-const SearchResult = ({ servicesList }: { servicesList: any }) => {
-  const data: ServiceType[] = use(servicesList);
-  console.log(data);
+const SearchResult = async ({ SearchParams }: { SearchParams: Promise<{ query: string }> }) => {
+  const q = (await SearchParams).query;
+  const data: ServiceType[] = await getSearchResults(q);
+
   if (!data?.length) return notFound();
 
   return data.map((service) => (

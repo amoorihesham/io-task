@@ -1,26 +1,19 @@
-'use client';
-import React, { Suspense, use } from 'react';
 import { notFound } from 'next/navigation';
 import { Square } from 'lucide-react';
-import LoaderSkeleton from '@/components/loaders/loader';
 import { cn } from '@/lib/utils';
-import { InjectedProps, ServiceType } from '@/types';
-import BackButton from '@/components/shared/back-button';
-import withI18n from '@/components/shared/hocs/with-i18n';
+import { ServiceType } from '@/types';
+import { getServiceDetails } from '@/actions';
+import { getLocale } from 'next-intl/server';
 
-const ServiceDetailsWrapper = ({
-  service,
-  locale,
-}: {
-  service: any;
-} & InjectedProps) => {
-  const data: ServiceType = use(service);
+const ServiceDetailsWrapper = async ({ params }: { params: Promise<{ serviceId: string }> }) => {
+  const srvId = (await params).serviceId;
+  const data: ServiceType = await getServiceDetails(srvId);
+  const locale = await getLocale();
 
-  if (!service) return notFound();
+  if (!data) return notFound();
 
   return (
-    <Suspense fallback={<LoaderSkeleton className='text-brown-main' />}>
-      <BackButton />
+    <>
       <div className='mt-8 lg:mt-14'>
         <h1 className='font-medium font-sans text-3xl lg:text-[42px] leading-[32px] text-brown-main'>{data.title}</h1>
         <p className='mt-8 lg:mt-14 text-[#1e1e1e] font-normal font-sans leading-[26px] max-w-[1142px]'>{data.description}</p>
@@ -56,8 +49,8 @@ const ServiceDetailsWrapper = ({
         </div>
       </div>
       {data.note && <p className='mt-10 lg:mt-18 font-normal font-sans text-[#1e1e1e] max-w-[1142px]'>{data.note}</p>}
-    </Suspense>
+    </>
   );
 };
 
-export default withI18n('service-page')(ServiceDetailsWrapper);
+export default ServiceDetailsWrapper;

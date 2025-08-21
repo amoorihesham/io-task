@@ -1,13 +1,12 @@
-import { getSearchResults } from '@/actions';
 import MaxContentWrapper from '@/components/layout/max-content-wrapper';
 import BackButton from '@/components/shared/back-button';
 import TeamButton from './_components/team-button';
 import SearchResult from './_components/search-result';
 import ServiceButton from './_components/service-button';
+import { Suspense } from 'react';
+import LoaderSkeleton from '@/components/loaders/loader';
 
 const SearchPage = ({ searchParams }: { searchParams: Promise<{ query: string }> }) => {
-  const services = getSearchResults(searchParams);
-
   return (
     <>
       <header
@@ -22,7 +21,9 @@ const SearchPage = ({ searchParams }: { searchParams: Promise<{ query: string }>
             <ServiceButton />
           </div>
           <div className='col-span-10'>
-            <SearchResult servicesList={services} />
+            <Suspense fallback={<LoaderSkeleton />}>
+              <SearchResult SearchParams={searchParams} />
+            </Suspense>
           </div>
         </div>
       </MaxContentWrapper>

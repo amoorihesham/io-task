@@ -1,5 +1,8 @@
-import { getServiceDetails, getServicesList } from '@/actions';
+import { Suspense } from 'react';
+import { getServicesList } from '@/actions';
 import MaxContentWrapper from '@/components/layout/max-content-wrapper';
+import LoaderSkeleton from '@/components/loaders/loader';
+import BackButton from '@/components/shared/back-button';
 import ServiceDetailsWrapper from '../_components/service-details';
 
 export const revalidate = 60;
@@ -11,8 +14,6 @@ export const generateStaticParams = async () => {
 };
 
 const ServiceDetails = ({ params }: { params: Promise<{ serviceId: string }> }) => {
-  const service = getServiceDetails(params);
-
   return (
     <>
       <header
@@ -20,7 +21,10 @@ const ServiceDetails = ({ params }: { params: Promise<{ serviceId: string }> }) 
         className='h-dvh bg-cover bg-no-repeat bg-center flex items-center justify-center'
       />
       <MaxContentWrapper className='py-10 lg:py-20'>
-        <ServiceDetailsWrapper service={service} />
+        <BackButton />
+        <Suspense fallback={<LoaderSkeleton className='text-brown-main' />}>
+          <ServiceDetailsWrapper params={params} />
+        </Suspense>
       </MaxContentWrapper>
     </>
   );

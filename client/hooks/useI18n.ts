@@ -1,3 +1,4 @@
+'use client';
 import { useRouter, usePathname } from '@/lib/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 
