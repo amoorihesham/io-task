@@ -60,10 +60,15 @@ export const getServiceDetails = async (serviceName?: Promise<{ serviceId: strin
   return data.data[0];
 };
 
-export const getSearchResults = async (query: string) => {
+export const getSearchResults = async (
+  query: Promise<{
+    query: string;
+  }>
+) => {
   const locale = await getLocale();
+  const q = (await query).query;
   const response = await fetch(
-    `https://io-task.onrender.com/api/services?locale=${locale}&filters[title][$containsi]=${query}&populate[fields][0]=title&populate[fields][1]=description&populate[fields][2]=href&populate[fields][3]=note&populate[heroImage][fields][0]=url&populate[heroImage][fields][1]=alternativeText&populate[details][populate][fields][0]=title&populate[details][populate][fields][1]=description&populate[details][populate][fields][2]=steps&populate[details][populate][fields][3]=subTitle`
+    `https://io-task.onrender.com/api/services?locale=${locale}&filters[title][$containsi]=${q}&populate[fields][0]=title&populate[fields][1]=description&populate[fields][2]=href&populate[fields][3]=note&populate[heroImage][fields][0]=url&populate[heroImage][fields][1]=alternativeText&populate[details][populate][fields][0]=title&populate[details][populate][fields][1]=description&populate[details][populate][fields][2]=steps&populate[details][populate][fields][3]=subTitle`
   );
   const data = await response.json();
 

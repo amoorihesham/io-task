@@ -9,14 +9,16 @@ const TestimonialsCarouselWrapper = async () => {
   const data = await getTestimonialsData();
   return (
     <>
-      <h1 className='text-[42px] font-sans font-bold leading-[52px] text-background'>{data.testimonials.title}</h1>
-      <p className='text-lg font-normal text-background/60 font-sans max-w-[580px] leading-[28px] mt-4'>{data.testimonials.description}</p>
-      <Carousel className='mt-10'>
+      <h1 className='text-2xl lg:text-[42px] font-sans font-bold leading-[52px] text-background'>{data.testimonials.title}</h1>
+      <p className='text-lg font-normal text-background/60 font-sans max-w-[580px] leading-[28px] lg:mt-4'>
+        {data.testimonials.description}
+      </p>
+      <Carousel className='mt-4 lg:mt-10'>
         <CarouselContent className='mb-6'>
           {data.testimonials.clients.map((client) => (
             <CarouselItem
               key={client.id}
-              className='flex flex-col lg:flex-row items-center lg:items-start gap-y-6 lg:gap-x-10'>
+              className='flex flex-col lg:flex-row items-center lg:items-start gap-y-4 lg:gap-x-10'>
               <Image
                 src={`https://io-task.onrender.com${client.image.url}`}
                 alt='client image'
@@ -37,13 +39,13 @@ const TestimonialsCarouselWrapper = async () => {
         </CarouselContent>
         <CarouselPrevious
           className={cn(
-            'top-full disabled:bg-background/20 disabled:text-background bg-background text-foreground',
+            'top-[calc(100%-18px)] disabled:bg-background/20 disabled:text-background bg-background text-foreground',
             locale === 'en' ? 'right-15 lg:right-20' : 'left-2 '
           )}
         />
         <CarouselNext
           className={cn(
-            'top-full disabled:bg-background/20 disabled:text-background bg-background text-foreground',
+            'top-[calc(100%-18px)] disabled:bg-background/20 disabled:text-background bg-background text-foreground',
             locale === 'en' ? 'right-2' : 'left-15 lg:left-20'
           )}
         />

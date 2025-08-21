@@ -1,7 +1,6 @@
 import { getServiceDetails, getServicesList } from '@/actions';
 import MaxContentWrapper from '@/components/layout/max-content-wrapper';
-import { getLocale, getTranslations } from 'next-intl/server';
-import ServiceDetailsWrapper from '@/components/wrappers/service-details';
+import ServiceDetailsWrapper from '../_components/service-details';
 
 export const revalidate = 60;
 
@@ -12,10 +11,7 @@ export const generateStaticParams = async () => {
 };
 
 const ServiceDetails = ({ params }: { params: Promise<{ serviceId: string }> }) => {
-  const t = getTranslations('service-page');
-  const locale = getLocale();
-  const serviceId = params;
-  const service = getServiceDetails(serviceId);
+  const service = getServiceDetails(params);
 
   return (
     <>
@@ -24,11 +20,7 @@ const ServiceDetails = ({ params }: { params: Promise<{ serviceId: string }> }) 
         className='h-dvh bg-cover bg-no-repeat bg-center flex items-center justify-center'
       />
       <MaxContentWrapper className='py-10 lg:py-20'>
-        <ServiceDetailsWrapper
-          t={t}
-          locale={locale}
-          service={service}
-        />
+        <ServiceDetailsWrapper service={service} />
       </MaxContentWrapper>
     </>
   );

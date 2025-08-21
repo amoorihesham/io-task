@@ -1,37 +1,26 @@
+'use client';
 import React, { Suspense, use } from 'react';
-import LoaderSkeleton from '../loaders/loader';
-import Link from 'next/link';
-import { ChevronLeft, Square } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import { Square } from 'lucide-react';
+import LoaderSkeleton from '@/components/loaders/loader';
 import { cn } from '@/lib/utils';
-import { ServiceType } from '@/types';
+import { InjectedProps, ServiceType } from '@/types';
+import BackButton from '@/components/shared/back-button';
+import withI18n from '@/components/shared/hocs/with-i18n';
 
 const ServiceDetailsWrapper = ({
-  t,
-  locale,
   service,
+  locale,
 }: {
-  t: Promise<any>;
-  locale: Promise<string>;
-
   service: any;
-}) => {
-  const tf = use(t);
-  const local = use(locale);
+} & InjectedProps) => {
   const data: ServiceType = use(service);
 
   if (!service) return notFound();
 
   return (
     <Suspense fallback={<LoaderSkeleton className='text-brown-main' />}>
-      <Link
-        href={'/services'}
-        className={cn(
-          'text-brown-main/80 hover:text-brown-main font-sans font-bold flex items-center gap-x-1  justify-center transition-colors duration-300 w-fit',
-          local === 'en' ? 'flex-row' : 'flex-row-reverse'
-        )}>
-        <ChevronLeft /> {tf('back')}
-      </Link>
+      <BackButton />
       <div className='mt-8 lg:mt-14'>
         <h1 className='font-medium font-sans text-3xl lg:text-[42px] leading-[32px] text-brown-main'>{data.title}</h1>
         <p className='mt-8 lg:mt-14 text-[#1e1e1e] font-normal font-sans leading-[26px] max-w-[1142px]'>{data.description}</p>
@@ -42,7 +31,7 @@ const ServiceDetailsWrapper = ({
               <div
                 className={cn(
                   'ps-4 lg:ps-6 flex items-start gap-x-2 text-[#1e1e1e] font-bold font-sans max-w-[908px] leading-[26px]',
-                  local === 'en' ? 'border-l-2 lg:border-l-4 border-l-gray-300' : 'border-r-2 lg:border-r-4 border-r-gray-300'
+                  locale === 'en' ? 'border-l-2 lg:border-l-4 border-l-gray-300' : 'border-r-2 lg:border-r-4 border-r-gray-300'
                 )}>
                 <Square className='size-6 text-brown-main fill-brown-main' />
                 <div className=''>
@@ -71,4 +60,4 @@ const ServiceDetailsWrapper = ({
   );
 };
 
-export default ServiceDetailsWrapper;
+export default withI18n('service-page')(ServiceDetailsWrapper);

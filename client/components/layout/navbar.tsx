@@ -7,7 +7,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useFormik } from 'formik';
 import z from 'zod';
 import { useLocale, useTranslations } from 'next-intl';
-import { useChangeLanguage } from '@/hooks/useChangeLanguage';
+import { useI18n } from '@/hooks/useI18n';
 import AppSheet from './app-sheet';
 import { Link, useRouter } from '@/lib/i18n/navigation';
 
@@ -16,7 +16,7 @@ const schema = z.object({
 });
 
 const Navbar = ({ servicesList }: { servicesList: Promise<any> }) => {
-  const cl = useChangeLanguage();
+  const { changeLanguage } = useI18n();
   const locale = useLocale();
   const services = use(servicesList);
   const t = useTranslations('navigation');
@@ -126,7 +126,7 @@ const Navbar = ({ servicesList }: { servicesList: Promise<any> }) => {
         </div>
         <div className='items-center gap-x-6 hidden lg:flex'>
           <Button
-            onClick={() => cl(locale === 'en' ? 'ar' : 'en')}
+            onClick={() => changeLanguage(locale === 'en' ? 'ar' : 'en')}
             variant={'ghost'}
             size={'sm'}
             className='text-background hover:bg-brown-main/90 cursor-pointer hover:text-background'>

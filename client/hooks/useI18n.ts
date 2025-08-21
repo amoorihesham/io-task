@@ -1,6 +1,9 @@
 import { useRouter, usePathname } from '@/lib/i18n/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 
-export function useChangeLanguage() {
+export function useI18n(namespace?: string) {
+  const t = useTranslations(namespace);
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -10,5 +13,5 @@ export function useChangeLanguage() {
     router.push(pathname, { locale });
   }
 
-  return changeLanguage;
+  return { changeLanguage, t, locale };
 }

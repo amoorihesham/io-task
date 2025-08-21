@@ -8,7 +8,7 @@ const CarouselBullets = ({ amount }: { amount: number }) => {
   const ctx = useContext(CarouselContext);
 
   return (
-    <ul className='lg:space-y-3 absolute bottom-2 lg:bottom-30 left-1/2 -translate-x-1/2 flex items-center gap-x-3 lg:block'>
+    <ul className='xl:space-y-3 absolute bottom-2 xl:bottom-30 left-1/2 -translate-x-1/2 flex items-center gap-x-3 xl:block'>
       {Array.from({ length: amount }).map((_, idx) => (
         <li
           key={idx}

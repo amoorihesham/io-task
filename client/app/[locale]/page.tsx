@@ -19,14 +19,14 @@ export default function Home() {
       </header>
 
       {/* OUR TEAM */}
-      <MaxContentWrapper className='py-20'>
+      <MaxContentWrapper className='py-10 lg:py-20'>
         <Suspense fallback={<LoaderSkeleton className='text-brown-main' />}>
           <OurTeamCarouselWrapper />
         </Suspense>
       </MaxContentWrapper>
 
       {/* TESTIMONIALS */}
-      <div className='bg-brown-main py-20'>
+      <div className='bg-brown-main py-10 lg:py-20'>
         <MaxContentWrapper>
           <Suspense fallback={<LoaderSkeleton className='text-brown-main' />}>
             <TestimonialsCarouselWrapper />

@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 import { useLocale, useTranslations } from 'next-intl';
 import { ChevronDown, ChevronUp, Globe, Menu, Search } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
-import { useChangeLanguage } from '@/hooks/useChangeLanguage';
+import { useI18n } from '@/hooks/useI18n';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import z from 'zod';
@@ -14,7 +14,7 @@ const schema = z.object({
 });
 
 const AppSheet = ({ servicesList }: { servicesList: any[] }) => {
-  const cl = useChangeLanguage();
+  const { changeLanguage } = useI18n();
   const locale = useLocale();
   const t = useTranslations('navigation');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,7 +56,7 @@ const AppSheet = ({ servicesList }: { servicesList: any[] }) => {
 
         <div className='flex items-center justify-between mt-6'>
           <Button
-            onClick={() => cl(locale === 'en' ? 'ar' : 'en')}
+            onClick={() => changeLanguage(locale === 'en' ? 'ar' : 'en')}
             variant={'ghost'}
             size={'sm'}
             className='text-background hover:bg-brown-main/90 cursor-pointer hover:text-background'>
@@ -112,7 +112,6 @@ const AppSheet = ({ servicesList }: { servicesList: any[] }) => {
             {t('about-us')}
           </Link>
           <DropdownMenu
-            modal={false}
             open={isMenuOpen}
             onOpenChange={setIsMenuOpen}>
             <DropdownMenuTrigger asChild>
@@ -122,23 +121,24 @@ const AppSheet = ({ servicesList }: { servicesList: any[] }) => {
                 {t('services')} {isMenuOpen ? <ChevronUp className='size-6' /> : <ChevronDown className='size-6' />}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className='top-50 z-[1010] bg-brown-main border-background/80 text-background/80 text-lg font-medium flex items-start justify-between max-w-[100%] w-[320px] p-4 shadow-md'>
-              <div className='space-y-4'>
-                {servicesList.map((service) => (
-                  <DropdownMenuItem
-                    key={service.id}
-                    className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
-                    <Link
-                      href={`/services/${service.documentId}`}
-                      onClick={() => {
-                        setIsSheetOpen(false);
-                        setIsMenuOpen(false);
-                      }}>
-                      {service.title}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </div>
+            <DropdownMenuContent
+              align='start'
+              sideOffset={8}
+              className='bg-brown-main z-[10000] max-w-xs'>
+              {servicesList.map((service) => (
+                <DropdownMenuItem
+                  key={service.id}
+                  className='text-lg text-background/80 hover:text-background focus:text-background bg-transparent hover:bg-transparent focus:bg-transparent'>
+                  <Link
+                    href={`/services/${service.documentId}`}
+                    onClick={() => {
+                      setIsSheetOpen(false);
+                      setIsMenuOpen(false);
+                    }}>
+                    {service.title}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
           <Link
