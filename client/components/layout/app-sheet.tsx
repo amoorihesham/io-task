@@ -15,7 +15,9 @@ const AppSheet = ({ servicesList, isLoading }: { servicesList: any[]; isLoading:
     <Sheet
       open={isSheetOpen}
       onOpenChange={setIsSheetOpen}>
-      <SheetTrigger className='flex lg:hidden'>
+      <SheetTrigger
+        className='flex lg:hidden'
+        aria-label='open side menu for the site navigation'>
         <Menu className='text-background cursor-pointer size-8' />
       </SheetTrigger>
       <SheetContent className='bg-brown-main z-[1005] px-4'>
