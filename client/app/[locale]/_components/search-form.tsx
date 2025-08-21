@@ -11,7 +11,7 @@ const SearchForm = ({
   setIsSheetOpen,
 }: {
   setOpenSearchBox: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSheetOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const router = useRouter();
   const { handleSubmit, errors, isSubmitting, values, handleChange, handleBlur, resetForm } = useFormik({
@@ -25,7 +25,7 @@ const SearchForm = ({
     },
     onSubmit: async (values) => {
       setOpenSearchBox(false);
-      setIsSheetOpen(false);
+      setIsSheetOpen?.(false);
       resetForm();
       router.push(`/search?query=${values.query}`);
     },

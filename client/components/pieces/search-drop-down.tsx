@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 import { Search } from 'lucide-react';
 import SearchForm from '@/app/[locale]/_components/search-form';
 
-const SearchDropDown = ({ setIsSheetOpen }: { setIsSheetOpen: React.Dispatch<SetStateAction<boolean>> }) => {
+const SearchDropDown = ({ setIsSheetOpen }: { setIsSheetOpen?: React.Dispatch<SetStateAction<boolean>> }) => {
   const [openSearchBox, setOpenSearchBox] = useState(false);
 
   return (

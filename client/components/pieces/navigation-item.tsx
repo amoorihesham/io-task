@@ -9,12 +9,12 @@ const NavigationItem = ({
   href,
   localeKey,
   closeSheetHandler,
-}: { href: string; localeKey: string; closeSheetHandler: React.Dispatch<SetStateAction<boolean>> } & InjectedProps) => {
+}: { href: string; localeKey: string; closeSheetHandler?: React.Dispatch<SetStateAction<boolean>> } & InjectedProps) => {
   return (
     <Link
       href={href}
       className='capitalize font-sans text-background text-lg px-4 py-2'
-      onClick={() => closeSheetHandler(false)}>
+      onClick={() => closeSheetHandler?.(false)}>
       {t(localeKey)}
     </Link>
   );

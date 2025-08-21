@@ -14,7 +14,7 @@ const ServicesDropDown = ({
 }: {
   servicesList: any[];
   isLoading: boolean;
-  closeSheetHandler: React.Dispatch<SetStateAction<boolean>>;
+  closeSheetHandler?: React.Dispatch<SetStateAction<boolean>>;
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, locale } = useI18n('navigation');
@@ -44,7 +44,7 @@ const ServicesDropDown = ({
                 key={service.id}
                 onClick={() => {
                   setIsMenuOpen(false);
-                  closeSheetHandler(false);
+                  closeSheetHandler?.(false);
                 }}
                 className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
                 <Link href={`/services/${service.documentId}`}>{service.title}</Link>
