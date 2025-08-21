@@ -28,32 +28,38 @@ const AppSheet = ({ servicesList, isLoading }: { servicesList: any[]; isLoading:
 
         <div className='flex items-center justify-between mt-6'>
           <ChangeLanguageButton />
-          <SearchDropDown />
+          <SearchDropDown setIsSheetOpen={setIsSheetOpen} />
         </div>
         <div className='flex flex-col gap-y-6 items-center'>
           <NavigationItem
             href='/'
             localeKey='home'
+            closeSheetHandler={setIsSheetOpen}
           />
           <NavigationItem
             href='/about'
-            localeKey='about'
+            localeKey='about-us'
+            closeSheetHandler={setIsSheetOpen}
           />
           <ServicesDropDown
             servicesList={servicesList}
             isLoading={isLoading}
+            closeSheetHandler={setIsSheetOpen}
           />
           <NavigationItem
             href='/our-team'
             localeKey='our-team'
+            closeSheetHandler={setIsSheetOpen}
           />
           <NavigationItem
             href='/our-blogs'
             localeKey='blogs'
+            closeSheetHandler={setIsSheetOpen}
           />
           <NavigationItem
             href='/contact-us'
             localeKey='contact-us'
+            closeSheetHandler={setIsSheetOpen}
           />
           <BookAppointmentButton />
         </div>

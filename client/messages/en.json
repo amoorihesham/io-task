@@ -30,6 +30,7 @@
     "back": "Back",
     "read-more": "Read More",
     "team": "Team",
-    "service": "service"
+    "service": "service",
+    "no-result": "No search result for this query"
   }
 }

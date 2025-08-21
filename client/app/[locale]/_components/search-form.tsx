@@ -6,7 +6,13 @@ import React from 'react';
 import SearchInput from './search-input';
 import SearchButton from './search-button';
 
-const SearchForm = ({ setOpenSearchBox }: { setOpenSearchBox: React.Dispatch<React.SetStateAction<boolean>> }) => {
+const SearchForm = ({
+  setOpenSearchBox,
+  setIsSheetOpen,
+}: {
+  setOpenSearchBox: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSheetOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const router = useRouter();
   const { handleSubmit, errors, isSubmitting, values, handleChange, handleBlur, resetForm } = useFormik({
     initialValues: {
@@ -19,6 +25,7 @@ const SearchForm = ({ setOpenSearchBox }: { setOpenSearchBox: React.Dispatch<Rea
     },
     onSubmit: async (values) => {
       setOpenSearchBox(false);
+      setIsSheetOpen(false);
       resetForm();
       router.push(`/search?query=${values.query}`);
     },

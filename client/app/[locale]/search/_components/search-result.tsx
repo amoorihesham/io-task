@@ -1,13 +1,13 @@
-import { notFound } from 'next/navigation';
 import { getSearchResults } from '@/actions';
 import { ServiceType } from '@/types';
 import ReadMoreButton from './read-more';
+import NoSearchResult from '../../_components/no-search-result';
 
 const SearchResult = async ({ SearchParams }: { SearchParams: Promise<{ query: string }> }) => {
   const q = (await SearchParams).query;
   const data: ServiceType[] = await getSearchResults(q);
 
-  if (!data?.length) return notFound();
+  if (!data?.length) return <NoSearchResult />;
 
   return data.map((service) => (
     <div
