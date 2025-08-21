@@ -1,4 +1,4 @@
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname } from '@/lib/i18n/navigation';
 
 export function useChangeLanguage() {
   const router = useRouter();

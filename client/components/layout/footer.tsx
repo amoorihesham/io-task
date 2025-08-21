@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import MaxContentWrapper from './max-content-wrapper';
 import { Button } from '../ui/button';
-import Link from 'next/link';
+import { Link } from '@/lib/i18n/navigation';
 import { useFormik } from 'formik';
 import z from 'zod';
 import { cn } from '@/lib/utils';

@@ -5,10 +5,9 @@ import { ChevronDown, ChevronUp, Globe, Menu, Search } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu';
 import { useChangeLanguage } from '@/hooks/useChangeLanguage';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import z from 'zod';
-import Link from 'next/link';
+import { Link, useRouter } from '@/lib/i18n/navigation';
 
 const schema = z.object({
   query: z.string().min(1, 'Provide a query'),

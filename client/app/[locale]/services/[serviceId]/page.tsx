@@ -3,7 +3,7 @@ import MaxContentWrapper from '@/components/layout/max-content-wrapper';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, Square } from 'lucide-react';
 import { getLocale, getTranslations } from 'next-intl/server';
-import Link from 'next/link';
+import { Link } from '@/lib/i18n/navigation';
 import { notFound } from 'next/navigation';
 import React from 'react';
 

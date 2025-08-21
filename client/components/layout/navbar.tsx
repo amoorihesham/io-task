@@ -1,16 +1,15 @@
 'use client';
 import React, { useState } from 'react';
 import MaxContentWrapper from './max-content-wrapper';
-import Link from 'next/link';
 import { Button } from '../ui/button';
 import { ChevronDown, ChevronUp, Globe, Search } from 'lucide-react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/navigation';
 import z from 'zod';
 import { useLocale, useTranslations } from 'next-intl';
 import { useChangeLanguage } from '@/hooks/useChangeLanguage';
 import AppSheet from './app-sheet';
+import { Link, useRouter } from '@/lib/i18n/navigation';
 
 const schema = z.object({
   query: z.string().min(1, 'Provide a query'),
@@ -46,7 +45,7 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
       <MaxContentWrapper className='w-full h-full flex items-center justify-center lg:justify-center gap-x-14'>
         <div className='items-center gap-x-6 hidden lg:flex'>
           <Link
-            href={'/'}
+            href={`/`}
             className='capitalize font-sans text-background text-lg px-4 py-2'>
             {t('home')}
           </Link>

@@ -2,7 +2,7 @@ import { getHomePageData } from '@/actions';
 import MaxContentWrapper from '@/components/layout/max-content-wrapper';
 import { Carousel as ShadCarousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/lib/utils';
 import { getLocale } from 'next-intl/server';
 import { Button } from '@/components/ui/button';
