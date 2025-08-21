@@ -74,7 +74,7 @@ const AppSheet = ({ servicesList }: { servicesList: any[] }) => {
                 {openSearchBox ? <Search className='size-6' /> : <Search className='size-6' />}
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className='top-50 z-[1001] bg-brown-main border-gray-800 text-background/80 text-lg font-medium max-w-[1540px] w-[300px] p-4'>
+            <DropdownMenuContent className='top-50 z-[10001] bg-brown-main border-gray-800 text-background/80 text-lg font-medium max-w-[1540px] w-[300px] p-4'>
               {errors.query && <p className='text-center capitalize text-red-500 mb-2'>{errors.query}</p>}
               <form
                 onSubmit={handleSubmit}
