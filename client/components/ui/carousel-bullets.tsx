@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 const CarouselBullets = ({ amount }: { amount: number }) => {
   const ctx = useContext(CarouselContext);
-  console.log(ctx?.api?.internalEngine().index.get());
+
   return (
     <ul className='lg:space-y-3 absolute bottom-2 lg:bottom-30 left-1/2 -translate-x-1/2 flex items-center gap-x-3 lg:block'>
       {Array.from({ length: amount }).map((_, idx) => (

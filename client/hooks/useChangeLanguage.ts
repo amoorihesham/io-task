@@ -7,14 +7,7 @@ export function useChangeLanguage() {
   function changeLanguage(locale: string) {
     if (!pathname) return;
 
-    // Split current path
-    const segments = pathname.split('/');
-
-    // Replace the locale (first segment after '/')
-    segments[1] = locale;
-
-    const newPath = segments.join('/') || '/';
-    router.push(newPath);
+    router.push(pathname, { locale });
   }
 
   return changeLanguage;

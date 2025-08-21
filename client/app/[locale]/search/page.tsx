@@ -14,7 +14,7 @@ const SearchPage = async ({ searchParams }: { searchParams: Promise<{ query: str
   const services = await getSearchResults(q);
 
   if (!services.length) return notFound();
-  console.log(q);
+
   return (
     services && (
       <>

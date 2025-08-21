@@ -32,7 +32,6 @@ const AppSheet = ({ servicesList }: { servicesList: any[] }) => {
       return { query: parsed.error.issues[0]?.message || 'Invalid' };
     },
     onSubmit: async (values) => {
-      console.log(values);
       setOpenSearchBox(false);
       setIsSheetOpen(false);
       resetForm();
@@ -131,7 +130,10 @@ const AppSheet = ({ servicesList }: { servicesList: any[] }) => {
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
                     <Link
                       href={`/services/${service.documentId}`}
-                      onClick={() => setIsSheetOpen(false)}>
+                      onClick={() => {
+                        setIsSheetOpen(false);
+                        setIsMenuOpen(false);
+                      }}>
                       {service.title}
                     </Link>
                   </DropdownMenuItem>

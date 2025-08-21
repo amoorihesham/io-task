@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const subscribe = createAsyncThunk('subscribe', async (email: string, { rejectWithValue }) => {
-  console.log(email);
   try {
     const response = await fetch('http://localhost:1337/api/subscribers', {
       method: 'POST',

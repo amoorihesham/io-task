@@ -33,7 +33,6 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
       return { query: parsed.error.issues[0]?.message || 'Invalid' };
     },
     onSubmit: async (values) => {
-      console.log(values);
       setOpenSearchBox(false);
       resetForm();
       router.push(`/search?query=${values.query}`);
@@ -69,6 +68,7 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
               <div className='space-y-7'>
                 {servicesList.slice(0, 5).map((service) => (
                   <DropdownMenuItem
+                    onClick={() => setIsMenuOpen(false)}
                     key={service.id}
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
                     <Link href={`/services/${service.documentId}`}>{service.title}</Link>
