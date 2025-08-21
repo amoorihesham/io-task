@@ -11,7 +11,7 @@ import CarouselBullets from '@/components/ui/carousel-bullets';
 export default async function Home() {
   const locale = await getLocale();
   const data = await getHomePageData();
-
+  console.log(data);
   return (
     <>
       <header
