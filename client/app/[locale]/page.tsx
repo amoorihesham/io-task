@@ -15,7 +15,7 @@ export default async function Home() {
   return (
     <>
       <header
-        style={{ backgroundImage: `url(http://localhost:1337${data.heroImage.url})` }}
+        style={{ backgroundImage: `url(https://io-task.onrender.com${data.heroImage.url})` }}
         className='h-dvh bg-cover bg-no-repeat bg-center flex items-center justify-center'>
         <MaxContentWrapper className=' h-full flex justify-center items-center'>
           <ShadCarousel className='w-full flex items-center'>
@@ -37,7 +37,7 @@ export default async function Home() {
                   </div>
                   <div>
                     <Image
-                      src={`http://localhost:1337${slide.person.url}`}
+                      src={`https://io-task.onrender.com${slide.person.url}`}
                       alt={slide.person.alternativeText}
                       width={374}
                       height={374}
@@ -67,7 +67,7 @@ export default async function Home() {
                 key={member.id}
                 className='w-full lg:max-w-[300px] flex flex-col items-center lg:block'>
                 <Image
-                  src={`http://localhost:1337${member.image.url}`}
+                  src={`https://io-task.onrender.com${member.image.url}`}
                   alt='member image'
                   width={269}
                   height={185}
@@ -123,7 +123,7 @@ export default async function Home() {
                   key={client.id}
                   className='flex flex-col lg:flex-row items-center lg:items-start gap-y-6 lg:gap-x-10'>
                   <Image
-                    src={`http://localhost:1337${client.image.url}`}
+                    src={`https://io-task.onrender.com${client.image.url}`}
                     alt='client image'
                     width={374}
                     height={374}

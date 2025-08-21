@@ -25,7 +25,7 @@ const ServiceDetails = async ({ params }: { params: Promise<{ serviceId: string 
     service && (
       <>
         <header
-          style={{ backgroundImage: `url(http://localhost:1337${service?.heroImage?.url})` }}
+          style={{ backgroundImage: `url(https://io-task.onrender.com${service?.heroImage?.url})` }}
           className='h-dvh bg-cover bg-no-repeat bg-center flex items-center justify-center'
         />
         <MaxContentWrapper className='py-10 lg:py-20'>

@@ -19,7 +19,7 @@ const SearchPage = async ({ searchParams }: { searchParams: Promise<{ query: str
     services && (
       <>
         <header
-          style={{ backgroundImage: `url(http://localhost:1337/uploads/hero_984c6b76ba.jpg)` }}
+          style={{ backgroundImage: `url(https://io-task.onrender.com/uploads/hero_984c6b76ba.jpg)` }}
           className='h-dvh bg-cover bg-no-repeat bg-center flex items-center justify-center'
         />
         <MaxContentWrapper className='py-10 lg:py-20'>

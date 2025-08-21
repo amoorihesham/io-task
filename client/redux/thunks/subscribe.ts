@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const subscribe = createAsyncThunk('subscribe', async (email: string, { rejectWithValue }) => {
   try {
-    const response = await fetch('http://localhost:1337/api/subscribers', {
+    const response = await fetch('https://io-task.onrender.com/api/subscribers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
