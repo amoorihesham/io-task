@@ -10,7 +10,7 @@ import React from 'react';
 export const generateStaticParams = async () => {
   const services = await getServicesList();
 
-  return services.map((service) => ({ serviceId: service.documentId }));
+  return services ? services.map((service) => ({ serviceId: service.documentId })) : [];
 };
 
 const ServiceDetails = async ({ params }: { params: Promise<{ serviceId: string }> }) => {
