@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import MaxContentWrapper from './max-content-wrapper';
 import { Button } from '../ui/button';
 import { ChevronDown, ChevronUp, Globe, Search } from 'lucide-react';
@@ -15,9 +15,10 @@ const schema = z.object({
   query: z.string().min(1, 'Provide a query'),
 });
 
-const Navbar = ({ servicesList }: { servicesList: any[] }) => {
+const Navbar = ({ servicesList }: { servicesList: Promise<any> }) => {
   const cl = useChangeLanguage();
   const locale = useLocale();
+  const services = use(servicesList);
   const t = useTranslations('navigation');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openSearchBox, setOpenSearchBox] = useState(false);
@@ -66,7 +67,7 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className='top-50 z-[1001] bg-brown-main border-gray-800 text-background/80 text-lg font-medium flex items-start justify-between max-w-[1540px] w-[1540px] p-6'>
               <div className='space-y-7'>
-                {servicesList.slice(0, 5).map((service) => (
+                {services.slice(0, 5).map((service) => (
                   <DropdownMenuItem
                     onClick={() => setIsMenuOpen(false)}
                     key={service.id}
@@ -76,8 +77,9 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
                 ))}
               </div>
               <div className='space-y-7'>
-                {servicesList.slice(5, 10).map((service) => (
+                {services.slice(5, 10).map((service) => (
                   <DropdownMenuItem
+                    onClick={() => setIsMenuOpen(false)}
                     key={service.id}
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
                     <Link href={`/services/${service.documentId}`}>{service.title}</Link>
@@ -85,8 +87,9 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
                 ))}
               </div>
               <div className='space-y-7'>
-                {servicesList.slice(10, 15).map((service) => (
+                {services.slice(10, 15).map((service) => (
                   <DropdownMenuItem
+                    onClick={() => setIsMenuOpen(false)}
                     key={service.id}
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
                     <Link href={`/services/${service.documentId}`}>{service.title}</Link>
@@ -94,8 +97,9 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
                 ))}
               </div>
               <div className='space-y-7'>
-                {servicesList.slice(15).map((service) => (
+                {services.slice(15).map((service) => (
                   <DropdownMenuItem
+                    onClick={() => setIsMenuOpen(false)}
                     key={service.id}
                     className='bg-transparent focus:bg-transparent focus:text-background transition-colors duration-300 cursor-pointer text-lg font-medium font-sans text-background/70'>
                     <Link href={`/services/${service.documentId}`}>{service.title}</Link>
@@ -171,7 +175,7 @@ const Navbar = ({ servicesList }: { servicesList: any[] }) => {
             {t('book-appointment')}
           </Button>
         </div>
-        <AppSheet servicesList={servicesList} />
+        <AppSheet servicesList={services} />
       </MaxContentWrapper>
     </nav>
   );

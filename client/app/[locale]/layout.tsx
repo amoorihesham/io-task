@@ -5,11 +5,13 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import Navbar from '@/components/layout/navbar';
-import { getServicesList } from '@/actions';
 import Footer from '@/components/layout/footer';
 import { Toaster } from 'sonner';
 import ReduxProvider from '@/components/providers/Redux';
 import '../globals.css';
+import { getServicesList } from '@/actions';
+import { Suspense } from 'react';
+import LoaderSkeleton from '@/components/loaders/loader';
 
 const dmSans = DM_Sans({
   variable: '--font-sans',
@@ -33,7 +35,8 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  const services = await getServicesList(locale);
+  const services = getServicesList(locale);
+
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
@@ -47,7 +50,9 @@ export default async function RootLayout({
       <body className={`${dmSans.variable}  antialiased`}>
         <NextIntlClientProvider>
           <ReduxProvider>
-            <Navbar servicesList={services} />
+            <Suspense fallback={<LoaderSkeleton />}>
+              <Navbar servicesList={services} />
+            </Suspense>
             <main className='min-h-[calc(100dvh-71px)]'>{children}</main>
             <Footer />
             <Toaster />
