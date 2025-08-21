@@ -8,6 +8,7 @@ import { InjectedProps } from '@/types';
 const BackButton = ({ t, locale }: InjectedProps) => {
   return (
     <Link
+      aria-label='back button'
       href={'/services'}
       className={cn(
         'text-brown-main/80 hover:text-brown-main font-sans font-bold flex items-center gap-x-1  justify-center transition-colors duration-300 w-fit',

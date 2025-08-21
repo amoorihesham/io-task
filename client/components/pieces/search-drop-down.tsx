@@ -14,6 +14,7 @@ const SearchDropDown = ({ setIsSheetOpen }: { setIsSheetOpen?: React.Dispatch<Se
       onOpenChange={setOpenSearchBox}>
       <DropdownMenuTrigger asChild>
         <Button
+          aria-label='open search drop down button'
           variant={'ghost'}
           className='capitalize font-sans text-background text-lg px-4 py-2 flex items-center gap-x-1 hover:bg-transparent hover:text-background cursor-pointer'>
           <Search className='size-6' />

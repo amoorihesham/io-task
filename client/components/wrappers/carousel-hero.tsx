@@ -30,6 +30,7 @@ const HeroCarouselWrapper = async () => {
                 alt={slide.person.alternativeText || 'person image'}
                 width={374}
                 height={374}
+                priority
               />
             </div>
           </CarouselItem>

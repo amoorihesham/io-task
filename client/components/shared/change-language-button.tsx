@@ -8,6 +8,7 @@ const ChangeLanguageButton = () => {
   const { changeLanguage, locale } = useI18n();
   return (
     <Button
+      aria-label='change sit language button'
       onClick={() => changeLanguage(locale === 'en' ? 'ar' : 'en')}
       variant={'ghost'}
       size={'sm'}
