@@ -1,6 +1,6 @@
 import { getHomePageData } from '@/actions';
 import MaxContentWrapper from '@/components/layout/max-content-wrapper';
-import { Carousel as ShadCarousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import Image from 'next/image';
 import { Link } from '@/lib/i18n/navigation';
 import { cn } from '@/lib/utils';
@@ -18,7 +18,7 @@ export default async function Home() {
         style={{ backgroundImage: `url(https://io-task.onrender.com${data.heroImage.url})` }}
         className='h-dvh bg-cover bg-no-repeat bg-center flex items-center justify-center'>
         <MaxContentWrapper className=' h-full flex justify-center items-center'>
-          <ShadCarousel className='w-full flex items-center'>
+          <Carousel className='w-full flex items-center'>
             <CarouselContent className='w-full'>
               {data.slides.map((slide) => (
                 <CarouselItem
@@ -38,7 +38,7 @@ export default async function Home() {
                   <div>
                     <Image
                       src={`https://io-task.onrender.com${slide.person.url}`}
-                      alt={slide.person.alternativeText}
+                      alt={slide.person.alternativeText || 'person image'}
                       width={374}
                       height={374}
                     />
@@ -50,7 +50,7 @@ export default async function Home() {
               <CarouselPrevious className='left-1/2 -translate-x-1/2 hidden lg:flex bg-transparent disabled:text-background/90 text-background hover:bg-transparent hover:text-background' />
               <CarouselBullets amount={data.slides.length} />
             </div>
-          </ShadCarousel>
+          </Carousel>
         </MaxContentWrapper>
       </header>
 
@@ -60,12 +60,12 @@ export default async function Home() {
         <p className='text-lg font-medium text-[#1e1e1e] font-sans max-w-[760px] text-center mx-auto leading-[28px] mt-4'>
           {data.team.description}
         </p>
-        <ShadCarousel className='max-w-4xl mx-auto mt-10'>
+        <Carousel className='max-w-4xl mx-auto mt-10'>
           <CarouselContent className='flex items-center justify-between mb-6 lg:mb-0'>
             {data.team.members.map((member) => (
               <CarouselItem
                 key={member.id}
-                className='w-full lg:max-w-[300px] flex flex-col items-center lg:block'>
+                className='w-full lg:basis-1/3 flex flex-col items-center lg:block'>
                 <Image
                   src={`https://io-task.onrender.com${member.image.url}`}
                   alt='member image'
@@ -106,7 +106,7 @@ export default async function Home() {
           </CarouselContent>
           <CarouselPrevious className={cn('top-full lg:top-1/2 lg:-translate-y-1/2 lg:-left-20 left-0 ')} />
           <CarouselNext className={cn('top-full lg:top-1/2 left-10 lg:-translate-y-1/2 lg:left-[100%] ')} />
-        </ShadCarousel>
+        </Carousel>
       </MaxContentWrapper>
 
       {/* TESTIMONIALS */}
@@ -116,7 +116,7 @@ export default async function Home() {
           <p className='text-lg font-normal text-background/60 font-sans max-w-[580px] leading-[28px] mt-4'>
             {data.testimonials.description}
           </p>
-          <ShadCarousel className='mt-10'>
+          <Carousel className='mt-10'>
             <CarouselContent className='mb-6'>
               {data.testimonials.clients.map((client) => (
                 <CarouselItem
@@ -152,7 +152,7 @@ export default async function Home() {
                 locale === 'en' ? 'right-2' : 'left-15 lg:left-20'
               )}
             />
-          </ShadCarousel>
+          </Carousel>
         </MaxContentWrapper>
       </div>
     </>

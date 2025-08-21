@@ -49,10 +49,12 @@ function Carousel({
   children,
   ...props
 }: React.ComponentProps<'div'> & CarouselProps) {
+  const [direction, setDirection] = React.useState<'ltr' | 'rtl'>('ltr');
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
       axis: orientation === 'horizontal' ? 'x' : 'y',
+      direction,
     },
     plugins
   );
@@ -101,6 +103,12 @@ function Carousel({
       api?.off('select', onSelect);
     };
   }, [api, onSelect]);
+
+  React.useEffect(() => {
+    if (typeof document !== undefined) {
+      setDirection(document.documentElement.lang === 'en' ? 'ltr' : 'rtl');
+    }
+  }, []);
 
   return (
     <CarouselContext.Provider
